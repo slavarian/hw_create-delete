@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список продуктов</title>
+</head>
+<body>
+    <h1>Список продуктов</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                {{ product.name }} - {{ product.price }}
+                <form method="post" action="{% url 'product_list' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <button type="submit">Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_product' %}">Добавить продукт</a>
+</body>
+</html>
+
+
